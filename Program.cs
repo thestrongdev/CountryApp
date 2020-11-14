@@ -22,23 +22,23 @@ namespace CountriesAppFileIO
             var myDocuments = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             //Without the above, it creates it in my "working directory": C:Users\goods\source\repos\countriesappfileio\debug\netcoreapp3.1 
 
-            string filePathTest = $@"{myDocuments}\countries.txt";
-            var firstTest = new CountriesTestFile(); 
-            firstTest.CreateFile(filePathTest); //CHECK IF THE FILE EXISTS, CREATE IF IT DOESN'T
-
-            //Creation of countries app
-            var test = new CountriesApp(filePathTest);
-
+            string filePathTest = $@"{myDocuments}\countries.txt"; 
+            CountriesTestFile.CreateFile(filePathTest); //CHECK IF THE FILE EXISTS, CREATE IF IT DOESN'T
+            var countries = new List<string>();
 
             try
             {
-                test.DisplayMenu();
+                CountriesApp.DisplayMenu(filePathTest, countries);
+
+                //now need to update validator
+                //also for delete option make so they can enter any letter case
             }
             catch (NullReferenceException ex)
             {
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
             }
+          
 
 
 

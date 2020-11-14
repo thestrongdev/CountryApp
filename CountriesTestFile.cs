@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Linq;
 
 namespace CountriesAppFileIO
 {
     class CountriesTestFile //to create a countries.txt file
     {   
-        public void CreateFile(string FilePath)
+        public static void CreateFile(string FilePath)
         {
             if (!File.Exists(FilePath))
             {

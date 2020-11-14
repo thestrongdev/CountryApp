@@ -8,63 +8,62 @@ namespace CountriesAppFileIO
 {
     class CountriesApp
     {
-        public string userAction { get; set; }
-        public int Action { get; set; }
-        private string _textFile;
+        //public string userAction { get; set; }
+        //public int Action { get; set; }
+        //private string _textFile;
 
-        private Dictionary<string, string> _menuOptions; //USE LATER
+        //private Dictionary<string, string> _menuOptions; //USE LATER
 
-        public Dictionary<string, string> MenuOptions { get => _menuOptions; set => _menuOptions = value; } //USE LATER
-        public List<string> Countries { get => _countries; set => _countries = value; }
-        public string TextFile { get => _textFile; set => _textFile = value; }
+        //public Dictionary<string, string> MenuOptions { get => _menuOptions; set => _menuOptions = value; } //USE LATER
+        //public List<string> Countries { get => _countries; set => _countries = value; }
+        //public string TextFile { get => _textFile; set => _textFile = value; }
 
-        private List<string> _countries;
+        //private List<string> _countries;
 
-        public CountriesApp()
-        {
+        //public CountriesApp()
+        //{
 
-        }
+        //}
 
-        public CountriesApp(string path)
-        {
-            TextFile = path;
-        }
+        //public CountriesApp(string path, List<string> countries)
+        //{
+        //    TextFile = path;
+        //}
 
 
-        public void DisplayMenu()
+        public static void DisplayMenu(string textFile, List<string> countries)
         {
             Console.WriteLine("Welcome to the countries app!");
             Console.WriteLine();
             bool play = true;
-
-            var theFile = new CountriesTextFile(Countries, TextFile);
+            
 
             do
             {
-                Console.WriteLine("Please choose one of the below options by entering an integer: \n" +
-                    "1) Display\n" +
+                Console.WriteLine("\nPlease choose one of the below options by entering an integer: \n" +
+                    "1) Read & Display\n" +
                     "2) Add\n" +
                     "3) Delete\n" +
                     "4) Exit");
                 Console.WriteLine();
 
-                userAction = Console.ReadLine();
+                string userAction = Console.ReadLine();
 
                 bool isNum = int.TryParse(userAction, out int Action);
 
-                if (isNum && Action<=4 && Action >=1) //INSTEAD USE VALIDATOR CLASS PRIOR TO BELOW IF STATEMENTS 
+                if (isNum && Action<=4 && Action >=1) //INSTEAD USE VALIDATOR CLASS PRIOR TO BELOW IF STATEMENTS once finish with main tasks
                 {
                     if(Action == 1)
                     {
-                        theFile.ReadTxt();
+                        CountriesTextFile.ReadTxt(textFile, countries);
 
                     } else if(Action == 2)
                     {
-                        theFile.WriteToTxt();
+                        CountriesTextFile.WriteToTxt(textFile, countries);
 
                     } else if (Action == 3)
                     {
-                        theFile.DeleteLine();
+                        CountriesTextFile.DeleteLine(textFile, countries);
                     }
                     else
                     {

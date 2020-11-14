@@ -8,69 +8,56 @@ namespace CountriesAppFileIO
 {
     class CountriesTextFile 
     {
-        private string _textFile;
-        private List<string> _countries;
     
-        public CountriesTextFile()
+        public static void OutputTxt(List<string> countries)
         {
-
-        }
-
-        public CountriesTextFile(List<string> countries, string textFile)
-        {
-            _countries = countries;
-            _textFile = textFile;
-        }
-
-        public void OutputTxt()
-        {
-            foreach (string line in _countries)
+            foreach (string line in countries)
             {
                 Console.WriteLine(line);
             }
         }
 
-        public void ReadTxt()
+        public static void ReadTxt(string textFile, List<string> countries)
         {
-            if (_countries.Count == 0) //or if _countries.Count == 0
+            if (countries.Count == 0) //or if _countries.Count == 0
             {
                 Console.WriteLine("File is empty. There is nothing to read and display");
             }
             else
             {
-                File.ReadAllLines(_textFile);
-                OutputTxt();
+                File.ReadAllLines(textFile);
+                OutputTxt(countries);
             }
         }
 
-        public void WriteToTxt()
+        public static void WriteToTxt(string textFile, List<string> countries)
         {
 
-            Console.WriteLine("Please enter a country name to add: ");
+            Console.WriteLine("\nPlease enter a country name to add: ");
             string userCountry = Console.ReadLine();
 
-            _countries.Add(userCountry);
+            countries.Add(userCountry);
 
-            File.WriteAllLines(_textFile, _countries);
+            File.WriteAllLines(textFile, countries);
 
-            Console.WriteLine("Here is the new list");
+            Console.WriteLine("\nHere is the new list");
 
-            OutputTxt();
+            OutputTxt(countries);
         }
 
-        public void DeleteLine()
+        public static void DeleteLine(string textFile, List<string> countries)
         {
-            Console.WriteLine("Please enter a country name to delete: ");
+            Console.WriteLine("\nPlease enter a country name to delete: ");
             string userCountry = Console.ReadLine();
 
-            if (_countries.Contains(userCountry))
+            if (countries.Contains(userCountry, StringComparer.OrdinalIgnoreCase))
             {
-                _countries.Remove(userCountry);
-                File.WriteAllLines(_textFile, _countries);
+                countries.Remove(userCountry);
+                File.WriteAllLines(textFile, countries);
 
                 Console.WriteLine("Here is the new list");
 
-                OutputTxt();
+                OutputTxt(countries);
             }
             else
             {
