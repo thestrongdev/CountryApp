@@ -10,14 +10,16 @@ namespace CountriesAppFileIO
     {
     
 
-        public static void isNumeric(string userInput) //THIS IS NOT STILL NEEDED...
+        public static bool isNumeric(string userInput) 
         {
-            Regex isNum = new Regex(@"^\d$");
+            Regex isNum = new Regex(@"\d");
 
             if (isNum.IsMatch(userInput)){
 
-                Console.WriteLine("Please enter letters only");
+                return true;
             }
+
+            return false;
 
         }
 

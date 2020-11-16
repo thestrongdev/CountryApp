@@ -33,16 +33,28 @@ namespace CountriesAppFileIO
         public static void WriteToTxt(string textFile, List<string> countries)
         {
 
-            Console.WriteLine("\nPlease enter a country name to add: ");
-            string userCountry = Console.ReadLine();
+            do
+            {
+                Console.WriteLine("\nPlease enter a country name to add: ");
+                string userCountry = Console.ReadLine();
 
-            countries.Add(userCountry.ToLower());
+                if (Validator.isNumeric(userCountry))
+                {
+                    Console.WriteLine("Countries should not have numbers. Enter something new.");
+                    continue;
+                }
 
-            File.WriteAllLines(textFile, countries);
+                countries.Add(userCountry.ToLower());
 
-            Console.WriteLine("\nHere is the new list");
+                File.WriteAllLines(textFile, countries);
 
-            OutputTxt(countries);
+                Console.WriteLine("\nHere is the new list");
+
+                OutputTxt(countries);
+
+                break;
+
+            } while (true);
         }
 
         public static void DeleteLine(string textFile, List<string> countries)
