@@ -8,32 +8,20 @@ namespace CountriesAppFileIO
 {
     class Validator 
     {
-        private string _userInput;
+    
 
-        public string UserInput { get => _userInput; set => _userInput = value; }
-
-        public Validator(string userInput)
-        {
-            _userInput = UserInput;
-        }
-
-        public Validator()
-        {
-
-        }
-
-        public void isNumeric()
+        public static void isNumeric(string userInput)
         {
             Regex isNum = new Regex(@"^\d$");
 
-            if (isNum.IsMatch(UserInput)){
+            if (isNum.IsMatch(userInput)){
 
                 Console.WriteLine("Please enter letters only");
             }
 
         }
 
-        public bool validAction(bool isNum, int Action) {
+        public static bool validAction(bool isNum, int Action) {
 
             return (isNum && Action <= 4 && Action >= 1);
         

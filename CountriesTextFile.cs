@@ -36,7 +36,7 @@ namespace CountriesAppFileIO
             Console.WriteLine("\nPlease enter a country name to add: ");
             string userCountry = Console.ReadLine();
 
-            countries.Add(userCountry);
+            countries.Add(userCountry.ToLower());
 
             File.WriteAllLines(textFile, countries);
 
@@ -50,9 +50,9 @@ namespace CountriesAppFileIO
             Console.WriteLine("\nPlease enter a country name to delete: ");
             string userCountry = Console.ReadLine();
 
-            if (countries.Contains(userCountry, StringComparer.OrdinalIgnoreCase))
+            if (countries.Contains(userCountry, StringComparer.OrdinalIgnoreCase)) //USE EQUALS INSTEAD OF CONTAIN?? NEED TO IGNORE CASE
             {
-                countries.Remove(userCountry);
+                countries.Remove(userCountry.ToLower());
                 File.WriteAllLines(textFile, countries);
 
                 Console.WriteLine("Here is the new list");
