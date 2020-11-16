@@ -36,7 +36,15 @@ namespace CountriesAppFileIO
             Console.WriteLine("Welcome to the countries app!");
             Console.WriteLine();
             bool play = true;
-            
+
+            Dictionary<int, string> fileOptions = new Dictionary<int, string>
+            {
+                {1, "Read & Display" },
+                {2, "Add" },
+                {3, "Delete" },
+                {4, "Exit" }
+
+            };
 
             do
             {
@@ -51,18 +59,21 @@ namespace CountriesAppFileIO
 
                 bool isNum = int.TryParse(userAction, out int Action);
 
-                if (isNum && Action<=4 && Action >=1) //INSTEAD USE VALIDATOR CLASS PRIOR TO BELOW IF STATEMENTS once finish with main tasks
+                if (Validator.validAction(isNum, Action)) //INSTEAD USE VALIDATOR CLASS PRIOR TO BELOW IF STATEMENTS once finish with main tasks
                 {
                     if(Action == 1)
                     {
+                        Console.WriteLine($"\nYou chose {fileOptions[Action]}!");
                         CountriesTextFile.ReadTxt(textFile, countries);
 
                     } else if(Action == 2)
                     {
+                        Console.WriteLine($"\nYou chose {fileOptions[Action]}!");
                         CountriesTextFile.WriteToTxt(textFile, countries);
 
                     } else if (Action == 3)
                     {
+                        Console.WriteLine($"\nYou chose {fileOptions[Action]}!");
                         CountriesTextFile.DeleteLine(textFile, countries);
                     }
                     else
@@ -84,8 +95,7 @@ namespace CountriesAppFileIO
         }
             //create dictionary list of menu in validation file???
             //see what option is in the dictionary
-            //if text file doesn't exist, run the countries TEST file  method
-            //Once you have a file, check user action and see if it can be run based on current file contents
+        
 
 
 
